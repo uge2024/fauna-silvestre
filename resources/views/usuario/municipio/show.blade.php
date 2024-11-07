@@ -32,7 +32,7 @@
                         <!-- Mostrar detalles del municipio -->
                         <p><strong>ID:</strong> {{ $municipio->id_municipio }}</p>
                         <p><strong>Departamento:</strong> {{ $municipio->departamento }}</p>
-                        <p><strong>Nombre:</strong> {{ $municipio->nombre }}</p>
+                        <p><strong>Nombre del municipio:</strong> {{ $municipio->nombre }}</p>
                         <p><strong>Código:</strong> {{ $municipio->codigo }}</p>
 
                         

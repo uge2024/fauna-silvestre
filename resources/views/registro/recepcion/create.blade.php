@@ -39,8 +39,23 @@
                             <div class="col-md-6">
                                
                             <div class="form-group">
-                                    <label for="id_institucion">INSTITUCION RESPONSABLE DEL RESCATE/DECOMISO
-                                    </label>
+    <label for="id_institucion_recibida">INSTITUCIÓN  RESPONABLE DE RESCATE/DECOMISO</label>
+    <select name="id_institucion_recibida" class="form-control" required>
+        @foreach ($instituciones as $institucion)
+            <option value="{{ $institucion->id_institucion }}">
+                {{ $institucion->nombre }}
+            </option>
+        @endforeach
+    </select>
+</div>
+<div class="form-group">
+    <label for="responsable_decomiso">Persona Responsable del Decomiso</label>
+    <input type="text" name="responsable_decomiso" id="responsable_decomiso" class="form-control" required>
+</div>
+
+
+                                <div class="form-group">
+                                    <label for="id_institucion">INSTITUCIÓN  QUE RECIBE </label>
                                     <select name="id_institucion" class="form-control" required>
                                         @foreach ($instituciones as $institucion)
                                             <option value="{{ $institucion->id_institucion }}">

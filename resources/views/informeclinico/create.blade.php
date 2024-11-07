@@ -49,7 +49,7 @@
                         <!-- Campo con Select2 habilitado para búsqueda -->
                         
                         <div class="form-group">
-                            <label for="id_recepcion">Animal  de Recepción:</label>
+                            <label for="id_recepcion">Animal Registrado por Recepción:</label>
                             <input type="text" name="animal_recepcion" id="animal_recepcion" class="form-control" placeholder="Escribe el nombre del animal">
                             <input type="hidden" name="id_recepcion" id="id_recepcion">
                             @error('id_recepcion')
@@ -59,7 +59,7 @@
 
                 <!-- Campo de texto con Autocomplete para Nacimiento -->
                 <div class="form-group">
-                            <label for="id_nacimiento">animal de Nacimiento:</label>
+                            <label for="id_nacimiento">Animal Registrado de Nacimiento:</label>
                             <input type="text" name="nombre_nacimiento" id="nombre_nacimiento" class="form-control" placeholder="Escribe el nombre del nacimiento">
                             <input type="hidden" name="id_nacimiento" id="id_nacimiento">
                             @error('id_nacimiento')
@@ -100,7 +100,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="veterinario">Veterinario:</label>
+                            <label for="veterinario">Medico_Veterinario:</label>
                             <input type="text" name="veterinario" id="veterinario" class="form-control" value="{{ old('veterinario') }}">
                             @error('veterinario')
                                 <div class="text-danger">{{ $message }}</div>

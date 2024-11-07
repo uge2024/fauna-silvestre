@@ -2,12 +2,16 @@
 
 @section('contenido')
 <div class="container">
-    <h3 class="my-4">Lista de Transferencias</h3>
+    <h3 class="my-4">
+        <i class="fas fa-exchange-alt" style="font-size: 40px; color: #2b2d46; margin-right: 15px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);"></i> Transferencias
+    </h3>
 
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
+ 
+
     @endif
 
     <a href="{{ route('transferencia.create') }}" class="btn btn-primary mb-3">Nueva Transferencia</a>

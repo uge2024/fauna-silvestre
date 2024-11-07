@@ -25,6 +25,7 @@ class RecepcionFormRequest extends FormRequest
         
         'id_institucion' => 'required',
         'fecha' => 'required|date',
+        'responsable_decomiso' => 'required|string',
         'motivo_recepcion' => 'required|max:300',
        'codigo_animal' => 'nullable|string|max:50',
         'nombre' => 'required|max:50',

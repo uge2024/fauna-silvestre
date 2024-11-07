@@ -8,8 +8,8 @@ use App\Http\Controllers\NacimientoController;
 use App\Http\Controllers\NacimientosController;
 use App\Http\Controllers\DecesoController;
 use App\Http\Controllers\FugaController;
-use App\http\Controllers\TransferenciaController;
-use App\http\Controllers\InformeClinicoController;
+use App\Http\Controllers\TransferenciaController;
+use App\Http\Controllers\InformeClinicoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsuarioController;
 

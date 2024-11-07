@@ -4,13 +4,12 @@
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0">Recepciones</h1>
-            </div>
+        <h1 class="m-0">
+                    <i class="fas fa-clipboard-list" style="font-size: 40px; color: #2b2d46; margin-right: 15px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);"></i> Recepciones
+                </h1>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                    <li class="breadcrumb-item active">Recepciones</li>
+                   
                 </ol>
             </div>
         </div>
@@ -75,10 +74,11 @@
                         <div class="table-responsive">
                             <table id="example1" class="table table-bordered table-hover">
                                 <thead>
-                                    <tr>
+                                <tr>
                                         <th>ID</th>
-                                        
-                                        <th>Institución</th>
+                                        <th>Institución Responsable de Decomiso</th>
+                                        <th>Institucion Que_Recibe</th>
+                                       
                                         <th>Fecha</th>
                                         <th>Código Animal</th>
                                         <th>Nombre Común</th>
@@ -90,15 +90,14 @@
                                 <tbody>
                                     @foreach ($recepciones as $recepcion)
                                         <tr>
-                                            <td>{{ $recepcion->id_recepcion }}</td>
-                                            
-                                            <td>{{ $recepcion->institucion->nombre }}</td>
-                                            <td>{{ $recepcion->fecha }}</td>
-                                            <td>{{ $recepcion->codigo_animal }}</td>
-                                            <td>{{ $recepcion->nombre }}</td>
-                                            <td>{{ $recepcion->estado_trasferencia }}</td>
-                                           
-                                            <td>
+                                        <td>{{ $recepcion->id_recepcion }}</td>
+                                        <td>{{ $recepcion->institucionRecibida->nombre ?? 'No asignada' }}</td> <!-- Nueva columna -->
+            <td>{{ $recepcion->institucion->nombre }}</td>
+            <td>{{ $recepcion->fecha }}</td>
+            <td>{{ $recepcion->codigo_animal }}</td>
+            <td>{{ $recepcion->nombre }}</td>
+            <td>{{ $recepcion->estado_trasferencia }}</td>
+            <td>
                                                 @if ($recepcion->fotografia)
                                                     <img src="{{ asset('imagenes/recepcion/' . $recepcion->fotografia) }}" alt="{{ $recepcion->nombre }}" class="img-thumbnail" width="100">
                                                 @endif

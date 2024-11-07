@@ -38,7 +38,7 @@
 </div>
                            
                                 <div class="form-group">
-                                <label for="nombre">Nombre</label>
+                                <label for="nombre">Nombre del Municipio</label>
                                 <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $municipio->nombre }}" required>
                                 @error('nombre')
                                     <div class="alert alert-danger">{{ $message }}</div>

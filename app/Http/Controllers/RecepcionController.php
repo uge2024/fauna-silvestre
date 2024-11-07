@@ -47,7 +47,8 @@ class RecepcionController extends Controller
     
             // Crear una nueva instancia del modelo Recepcion con los datos validados
             $recepcion = new Recepcion($validatedData);
-    
+            
+            $recepcion->id_institucion_recibida = $request->input('id_institucion_recibida');
             // Procesar la carga de la fotografía si está presente
             if ($request->hasFile('fotografia')) {
                 $fotografia = $request->file('fotografia');
@@ -61,7 +62,7 @@ class RecepcionController extends Controller
             $recepcion->estado_trasferencia = 'no transferido';
     
             // Obtener la institución desde la base de datos
-            $institucion = Institucion::find($request->input('id_institucion'));
+            $institucion = Institucion::find($request->input('id_institucion_recibida'));
     
             // Generar el código de animal con las siglas de la institución
             $recepcion->codigo_animal = $this->generateCodigoAnimal($institucion);
@@ -118,6 +119,7 @@ private function generateCodigoAnimal($institucion)
         $validatedData = $request->validate([
             
             'id_institucion' => 'required|integer',
+            'id_institucion_recibida' => 'required|integer',
             'fecha' => 'required|date',
             'motivo_recepcion' => 'required|string|max:300',
             'codigo_animal' => 'required|string|max:50',
@@ -139,6 +141,7 @@ private function generateCodigoAnimal($institucion)
             'medicacion' => 'nullable|string|max:300',
             'alimentacion' => 'nullable|string|max:300',
             'estado_trasferencia' => 'sometimes|string', // if it's optional or automatically set
+       'responsable_decomiso' => 'required|string',
         ]);
     
         $recepcion = Recepcion::findOrFail($id);
@@ -157,7 +160,7 @@ private function generateCodigoAnimal($institucion)
         return redirect()->route('recepcion.index')->with('success', 'Recepción actualizada correctamente.');
     }
     
-    public function destroy($id)
+ public function destroy($id)
 {
     try {
         $recepcion = Recepcion::findOrFail($id);

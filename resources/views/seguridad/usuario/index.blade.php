@@ -5,7 +5,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Listado de usuarios</h1>
+            <h1 class="m-0">
+            <i class="fas fa-users" style="font-size: 40px; color: #2b2d46; margin-right: 15px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);"></i>
+
+Listado de usuarios
+</h1>
+
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">

@@ -38,7 +38,7 @@ class Deceso extends Model
     }
     public function nacimiento()
     {
-        return $this->belongsTo(nacimiento::class, 'id_nacimiento');
+        return $this->belongsTo(Nacimiento::class, 'id_nacimiento');
     }
 }
 

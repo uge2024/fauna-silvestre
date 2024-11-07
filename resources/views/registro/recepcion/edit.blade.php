@@ -38,8 +38,18 @@
                         @method('PUT')
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="id_institucion">Institución</label>
+                            <div class="form-group">
+    <label for="id_institucion_recibida">Institución Responsable de Decomiso</label>
+    <select name="id_institucion_recibida" class="form-control" required>
+        @foreach ($instituciones as $institucion)
+            <option value="{{ $institucion->id_institucion }}" {{ $recepcion->id_institucion_recibida == $institucion->id_institucion ? 'selected' : '' }}>
+                {{ $institucion->nombre }}
+            </option>
+        @endforeach
+    </select>
+</div>
+<div class="form-group">
+                                    <label for="id_institucion">Institución que recibe al animal</label>
                                     <select name="id_institucion" class="form-control" required>
                                         @foreach ($instituciones as $institucion)
                                             <option value="{{ $institucion->id_institucion }}" {{ $recepcion->id_institucion == $institucion->id_institucion ? 'selected' : '' }}>
@@ -48,6 +58,13 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group">
+            <label for="responsable_decomiso"> Persona Responsable del Decomiso</label>
+            <input type="text" name="responsable_decomiso" id="responsable_decomiso" class="form-control" value="{{ old('responsable_decomiso', $recepcion->responsable_decomiso) }}" required>
+            @error('responsable_decomiso')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
                                 <div class="form-group">
                                 <label for="fecha">Fecha</label>
                                 <input type="date" name="fecha" id="fecha" class="form-control" 

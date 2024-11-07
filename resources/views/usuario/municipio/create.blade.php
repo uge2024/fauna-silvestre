@@ -36,7 +36,7 @@
     @endif
 </div>
                             <div class="form-group">
-                                <label for="nombre">Nombre</label>
+                                <label for="nombre">Nombre del municipio</label>
                                 <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese el nombre" required>
                                 @error('nombre')
                                     <div class="alert alert-danger">{{ $message }}</div>

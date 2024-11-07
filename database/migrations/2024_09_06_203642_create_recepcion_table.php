@@ -9,7 +9,9 @@ class CreateRecepcionTable extends Migration
     {
         Schema::create('recepcion', function (Blueprint $table) {
             $table->id('id_recepcion');
-            $table->unsignedBigInteger('id_institucion');
+            $table->unsignedBigInteger('id_institucion'); // Institución que recibe al animal
+            $table->unsignedBigInteger('id_institucion_recibida'); 
+            $table->string('responsable_decomiso'); 
             $table->dateTime('fecha');
             $table->string('motivo_recepcion');
             $table->string('codigo_animal');
@@ -21,7 +23,7 @@ class CreateRecepcionTable extends Migration
             $table->string('estado');
             $table->string('sexo');
             $table->string('color');
-            $table->string('descripcion_color', 300)->nullable(); // Make sure it's nullable
+            $table->string('descripcion_color', 300)->nullable();
             $table->string('comportamiento');
             $table->string('contacto_animales');
             $table->string('sospech_enfermedad')->nullable();
@@ -31,14 +33,15 @@ class CreateRecepcionTable extends Migration
             $table->string('tiempo_cautiverio')->nullable();
             $table->string('alimentacion')->nullable();
             $table->string('estado_trasferencia')->nullable();
-            
+
             $table->foreign('id_institucion')->references('id_institucion')->on('institucion')->onDelete('cascade');
+            $table->foreign('id_institucion_recibida')->references('id_institucion')->on('institucion')->onDelete('cascade'); // Nueva referencia
+            $table->timestamps();
         });
     }
+
     public function down()
-{
-    Schema::dropIfExists('recepcion');
-}
-
-
+    {
+        Schema::dropIfExists('recepcion');
+    }
 }

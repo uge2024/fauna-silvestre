@@ -30,10 +30,15 @@
                                     <dt class="col-sm-4">ID:</dt>
                                     <dd class="col-sm-8">{{ $recepcion->id_recepcion }}</dd>
 
-                                    
+                                    <dt class="col-sm-4">InstituciónResponsable del decomiso</dt>
+                                    <dd class="col-sm-8">{{ $recepcion->institucionRecibida->nombre }}</dd>
 
-                                    <dt class="col-sm-4">Institución:</dt>
+                                    <dt class="col-sm-4">Institución_que recibe:</dt>
                                     <dd class="col-sm-8">{{ $recepcion->institucion->nombre }}</dd>
+
+
+                                    <dt class="col-sm-4">Persona Responsable del decomiso</dt>
+                                    <dd class="col-sm-8">{{ $recepcion->responsable_decomiso }}</dd>
 
                                     <dt class="col-sm-4">Fecha:</dt>
                                     <dd class="col-sm-8">{{ $recepcion->fecha }}</dd>

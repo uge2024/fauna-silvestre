@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte de Decesos por Clase - {{ $nombreMes }} {{ $año }}</title>
     <style>
+        /* Configuración de la página en orientación horizontal (landscape) */
+        @page {
+            size: letter landscape; /* Tamaño de la página en orientación horizontal (landscape) */
+            margin: 10mm; /* Márgenes de la página */
+        }
+
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
         }
+
         .header {
             position: relative;
             text-align: center;
@@ -15,62 +27,88 @@
             background-color: #f1f1f1;
             border-bottom: 2px solid #0056b3;
         }
+
         .header img.top-left {
             position: absolute;
             top: 0;
             left: 0;
             width: 80px;
         }
+
         .header img.top-right {
             position: absolute;
             top: 0;
             right: 0;
             width: 80px;
         }
+
         h1 {
             font-size: 18px;
             margin: 0;
             line-height: 80px;
         }
+
         .content {
             text-align: center;
             margin-top: 20px;
         }
+
         .content h1 {
             font-size: 16px;
             margin-bottom: 15px;
             text-transform: uppercase;
         }
+
         table {
-            margin: 0 auto;
-            width: 95%;
+            width: 100%; /* Ancho completo */
             border-collapse: collapse;
+            margin-top: 20px;
         }
+
         th, td {
             border: 1px solid #ddd;
-            padding: 5px;
+            padding: 8px;
             text-align: center;
             font-size: 12px;
         }
+
         th {
             background-color: #007BFF;
             color: white;
         }
+
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+
         .class-header {
             background-color: #007BFF;
             color: white;
             font-weight: bold;
             text-align: center;
         }
+
         .subtotal-header {
             background-color: #e9ecef;
             font-weight: bold;
         }
+
         .subtotal-row td {
             text-align: center;
+        }
+
+        /* Asegura que el contenido no se desborde de la página */
+        .content p {
+            font-size: 14px;
+        }
+
+        /* Si hay más de una página, se asegurará de que no se repita la cabecera */
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
         }
     </style>
 </head>

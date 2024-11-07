@@ -36,7 +36,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-    <label for="id_recepcion">Animal de Recepción:</label>
+    <label for="id_recepcion">Animal Registrado por Recepción:</label>
     <select name="id_recepcion" id="id_recepcion" class="form-control">
         <option value="">Selecciona una recepción (opcional)</option>
         @foreach ($recepciones as $recepcion)
@@ -51,7 +51,7 @@
 </div>
 
 <div class="form-group">
-    <label for="id_nacimiento">animal de Nacimiento:</label>
+    <label for="id_nacimiento">Animal Registrado de Nacimiento:</label>
     <select name="id_nacimiento" id="id_nacimiento" class="form-control">
         <option value="">Selecciona un nacimiento (opcional)</option>
         @foreach ($nacimientos as $nacimiento)

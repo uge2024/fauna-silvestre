@@ -18,7 +18,9 @@ class Recepcion extends Model
     // Campos que pueden ser asignados en masa
     protected $fillable = [
         
-        'id_institucion',
+       'id_institucion',
+        'id_institucion_recibida',
+        'responsable_decomiso',
         'fecha',
         'motivo_recepcion',
         'codigo_animal',
@@ -48,4 +50,9 @@ class Recepcion extends Model
     {
         return $this->belongsTo(Institucion::class, 'id_institucion');
     }
+    public function institucionRecibida()
+{
+    return $this->belongsTo(Institucion::class, 'id_institucion_recibida');
+}
+
 }
