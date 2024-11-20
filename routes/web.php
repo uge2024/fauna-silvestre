@@ -12,7 +12,7 @@ use App\Http\Controllers\TransferenciaController;
 use App\Http\Controllers\InformeClinicoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsuarioController;
-
+use App\Http\Controllers\ReporteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -65,7 +65,7 @@ Route::get('/nacimiento/reporte/descargar', [NacimientosController::class, 'desc
 
 
 // Ruta para generar el PDF del reporte de decesos
-Route::get('deceso/reporte', [DecesoController::class, 'reportePorClaseDeceso'])->name('deceso.reporte');
+Route::get('deceso/r eporte', [DecesoController::class, 'reportePorClaseDeceso'])->name('deceso.reporte');
 Route::get('deceso/reporte/pdf', [DecesoController::class, 'descargarReporteDecesoPDF'])->name('deceso.reporte.pdf');
 /////////////////////transferencia///////////////
 
@@ -75,3 +75,17 @@ Route::get('/transferencias/reporte', [TransferenciaController::class, 'reporteP
 
 Route::get('/transferencias/reporte/pdf', [TransferenciaController::class, 'descargarReporteTransferenciaPDF'])
     ->name('transferencia.reporte.pdf');
+
+  
+
+    // Ruta para mostrar el formulario de generación de reporte trimestral 
+    Route::get('reporte', [ReporteController::class, 'index'])->name('reporte.index');
+    
+    // Ruta para generar el reporte
+    Route::get('reporte/generar', [ReporteController::class, 'reporte'])->name('reporte.generar');
+    Route::get('/reporte/pdf', [ReporteController::class, 'generarReporte'])->name('reporte.pdf');
+// Ruta para generar el reporte en PDF
+Route::get('/reporte/generar', [ReporteController::class, 'generarReporte'])->name('reporte.generar');
+
+Route::get('/exportar/excel', [ReporteController::class, 'exportarExcelManual'])->name('exportar.excel.manual');
+Route::get('/exportar/excel/manual', [TuControlador::class, 'exportarExcelManual'])->name('exportar.excel.manual');

@@ -30,7 +30,7 @@
             <option value="">Seleccione...</option>
             @foreach($recepciones as $recepcion)
                 <option value="{{ $recepcion->id_recepcion }}" {{ old('id_recepcion') == $recepcion->id_recepcion ? 'selected' : '' }}>
-                    {{ $recepcion->nombre }}
+                    {{ $recepcion->codigo_animal }}
                 </option>
             @endforeach
         </select>
@@ -41,7 +41,7 @@
             <option value="">Seleccione...</option>
             @foreach($nacimientos as $nacimiento)
                 <option value="{{ $nacimiento->id_nacimiento }}" {{ old('id_nacimiento') == $nacimiento->id_nacimiento ? 'selected' : '' }}>
-                    {{ $nacimiento->nombre }}
+                    {{ $nacimiento->codigo }}
                 </option>
             @endforeach
         </select>

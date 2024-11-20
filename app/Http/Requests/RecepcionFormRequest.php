@@ -22,10 +22,10 @@ class RecepcionFormRequest extends FormRequest
     public function rules(): array
 {
     return [
-        
-        'id_institucion' => 'required',
-        'fecha' => 'required|date',
-        'responsable_decomiso' => 'required|string',
+         'id_institucion_recibida' => 'required|exists:institucion,id_institucion',
+        'id_institucion' => 'required|exists:institucion,id_institucion|different:id_institucion_recibida',
+        'responsable_decomiso' => 'required|string',        
+        'fecha' => 'required|date',      
         'motivo_recepcion' => 'required|max:300',
        'codigo_animal' => 'nullable|string|max:50',
         'nombre' => 'required|max:50',

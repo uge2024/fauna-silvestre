@@ -12,6 +12,18 @@ use Carbon\Carbon;
 use PDF;
 class DecesoController extends Controller
 {
+    public function __construct()
+{
+    $this->middleware(function ($request, $next) {
+        if (auth()->user()->hasRole('usuario')) {
+            // Redirigir con un mensaje de error
+            return redirect()->route('deceso.index')->with('error', 'No tienes permiso para realizar esta acción.');
+        }
+
+        return $next($request);
+    })->only(['edit', 'destroy']);
+}
+
     public function index(Request $request)
     {
         $texto = trim($request->get('texto', ''));
@@ -37,32 +49,44 @@ class DecesoController extends Controller
     }
 
     public function store(Request $request)
-{
-    // Validate the request
-    $validatedData = $request->validate([
-        'id_institucion' => 'required|exists:institucion,id_institucion',
-        'id_recepcion' => 'nullable|exists:recepcion,id_recepcion',
-        'id_nacimiento' => 'nullable|exists:nacimiento,id_nacimiento',
-        'fecha' => 'required|date',
-        'causas' => 'required|string|max:50',
-        'diagnostico' => 'required|string|max:50',
-        'tratamiento' => 'required|string|max:50',
-        'laboratorio_archivo' => 'nullable|mimes:pdf|max:2048', 
-        'medico_veterinario' => 'required|string|max:50',
-    ]);
-
-    if ($request->hasFile('laboratorio_archivo')) {
-        $file = $request->file('laboratorio_archivo');
-        $filename = time() . '-' . $file->getClientOriginalName();
-        $file->move(public_path('pdfs'), $filename);
-        $validatedData['laboratorio_archivo'] = $filename;
+    {
+        // Validación básica
+        $validatedData = $request->validate([
+            'id_institucion' => 'required|exists:institucion,id_institucion',
+            'id_recepcion' => 'nullable|exists:recepcion,id_recepcion',
+            'id_nacimiento' => 'nullable|exists:nacimiento,id_nacimiento',
+            'fecha' => 'required|date',
+            'causas' => 'required|string|max:50',
+            'diagnostico' => 'required|string|max:50',
+            'tratamiento' => 'required|string|max:50',
+            'laboratorio_archivo' => 'nullable|mimes:pdf|max:2048',
+            'medico_veterinario' => 'required|string|max:50',
+        ]);
+    
+        // Verificar si el animal de recepción ya tiene un deceso registrado
+        if ($request->id_recepcion && Deceso::where('id_recepcion', $request->id_recepcion)->exists()) {
+            return back()->withErrors(['id_recepcion' => 'Este animal ya esta registrada en Deceso.']);
+        }
+    
+        // Verificar si el animal de nacimiento ya tiene un deceso registrado
+        if ($request->id_nacimiento && Deceso::where('id_nacimiento', $request->id_nacimiento)->exists()) {
+            return back()->withErrors(['id_nacimiento' => 'Este animal ya esta registrada en Deceso.']);
+        }
+    
+        // Subir archivo de laboratorio si existe
+        if ($request->hasFile('laboratorio_archivo')) {
+            $file = $request->file('laboratorio_archivo');
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path('pdfs'), $filename);
+            $validatedData['laboratorio_archivo'] = $filename;
+        }
+    
+        // Crear el nuevo registro de Deceso
+        Deceso::create($validatedData);
+    
+        return redirect()->route('deceso.index')->with('success', 'Deceso creado exitosamente');
     }
-   
-    // Create a new Deceso record
-    Deceso::create($validatedData);
-
-    return redirect()->route('deceso.index')->with('success', 'Deceso creado exitosamente');
-}
+    
 
     public function edit(Deceso $deceso)
     {

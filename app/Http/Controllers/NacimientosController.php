@@ -12,6 +12,17 @@ use App\Http\Requests\NacimientosFormRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 class NacimientosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (auth()->user()->hasRole('usuario')) {
+                // Redirigir con un mensaje de error
+                return redirect()->route('nacimiento.index')->with('error', 'No tienes permiso para realizar esta acción.');
+            }
+
+            return $next($request);
+        })->only(['edit', 'destroy']);
+    }
     public function index(Request $request)
     {
         $texto = trim($request->get('texto', ''));

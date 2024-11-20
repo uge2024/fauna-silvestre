@@ -54,7 +54,7 @@
         <option value="">Seleccione La madre o padre del animal nacido</option>
         @foreach($recepciones as $recepcion)
             <option value="{{ $recepcion->id_recepcion }}" {{ old('id_recepcion') == $recepcion->id_recepcion ? 'selected' : '' }}>
-                {{ $recepcion->nombre }} <!-- Asegúrate de tener un campo descriptivo aquí -->
+                {{ $recepcion->codigo_animal}} <!-- Asegúrate de tener un campo descriptivo aquí -->
             </option>
         @endforeach
     </select>

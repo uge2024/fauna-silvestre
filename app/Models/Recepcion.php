@@ -55,4 +55,5 @@ class Recepcion extends Model
     return $this->belongsTo(Institucion::class, 'id_institucion_recibida');
 }
 
+
 }

@@ -39,8 +39,8 @@
                             <div class="col-md-6">
                                
                             <div class="form-group">
-    <label for="id_institucion_recibida">INSTITUCIÓN  RESPONABLE DE RESCATE/DECOMISO</label>
-    <select name="id_institucion_recibida" class="form-control" required>
+    <label for="id_institucion_recibida">INSTITUCIÓN RESPONSABLE DE RESCATE/DECOMISO</label>
+    <select name="id_institucion_recibida" class="form-control" id="id_institucion_recibida" required>
         @foreach ($instituciones as $institucion)
             <option value="{{ $institucion->id_institucion }}">
                 {{ $institucion->nombre }}
@@ -48,22 +48,26 @@
         @endforeach
     </select>
 </div>
+
 <div class="form-group">
     <label for="responsable_decomiso">Persona Responsable del Decomiso</label>
     <input type="text" name="responsable_decomiso" id="responsable_decomiso" class="form-control" required>
 </div>
 
+<div class="form-group">
+    <label for="id_institucion">INSTITUCIÓN QUE RECIBE</label>
+    <select name="id_institucion" class="form-control" id="id_institucion" required>
+        @foreach ($instituciones as $institucion)
+            <!-- Filtrar para que no se pueda seleccionar la misma institución -->
+            @if (old('id_institucion_recibida') != $institucion->id_institucion)
+                <option value="{{ $institucion->id_institucion }}">
+                    {{ $institucion->nombre }}
+                </option>
+            @endif
+        @endforeach
+    </select>
+</div>
 
-                                <div class="form-group">
-                                    <label for="id_institucion">INSTITUCIÓN  QUE RECIBE </label>
-                                    <select name="id_institucion" class="form-control" required>
-                                        @foreach ($instituciones as $institucion)
-                                            <option value="{{ $institucion->id_institucion }}">
-                                                {{ $institucion->nombre }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
                                 <div class="form-group">
     <label for="fecha">Fecha registro</label>
     <input type="date" name="fecha" class="form-control" value="{{ old('fecha', now()->format('Y-m-d')) }}" required>
@@ -73,8 +77,7 @@
     <select name="motivo_recepcion" class="form-control" required>
         <option value="">Seleccione un motivo</option>
         <option value="Rescate">Rescate</option>
-        <option value="Confiscación">Confiscación</option>
-        <option value="Entrega Voluntaria">Entrega Voluntaria</option>
+        <option value="Confiscación">Decomiso</option>
         <option value="Traslado">Traslado</option>
 
     </select>
@@ -111,12 +114,28 @@
                             </div>
 
                            
+                            <div class="form-group">
+    <label for="fotografia">Fotografía</label>
+    <input type="file" name="fotografia" class="form-control-file" id="fotografia" onchange="previewImage(event)">
+</div>
 
-                                <div class="form-group">
-                                    <label for="fotografia">Fotografía</label>
-                                    <input type="file" name="fotografia" class="form-control-file">
-                                </div>
-                                
+<!-- Contenedor para la previsualización de la imagen -->
+<div id="imagePreview" style="width: 4rem; height: 4rem; overflow: hidden; border: 1px solid #ccc; border-radius: 5px;">
+    <img id="preview" src="#" alt="Vista previa" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+</div>
+
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('preview');
+            output.src = reader.result;
+            output.style.display = 'block';  // Mostrar la imagen
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
                                 <div class="form-group">
     <label for="edad">Edad</label>
     <select name="edad" class="form-control" required>

@@ -13,6 +13,19 @@ use PDF;
 
 class FugaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (auth()->user()->hasRole('usuario')) {
+                // Redirigir con un mensaje de error
+                return redirect()->route('fuga.index')->with('error', 'No tienes permiso para realizar esta acción.');
+            }
+    
+            return $next($request);
+        })->only(['edit', 'destroy']);
+    }
+    
+
     public function index(Request $request)
     {
         $texto = trim($request->get('texto', ''));
@@ -43,12 +56,32 @@ class FugaController extends Controller
         return view('registro.fuga.create', compact('instituciones', 'recepciones', 'nacimientos'));
     }
 
-    public function store(FugaFormRequest $request)
+    public function store(Request $request)
     {
-        // Eliminar la referencia a codigo_padre
-        Fuga::create($request->validated());
+        // Validar los datos del formulario
+        $validatedData = $request->validate([
+            'id_institucion' => 'required|exists:institucion,id_institucion',
+            'id_recepcion' => 'nullable|exists:recepcion,id_recepcion',
+            'id_nacimiento' => 'nullable|exists:nacimiento,id_nacimiento',
+            'fecha' => 'required|date',
+        ]);
+    
+        // Verificar si el animal ya tiene una fuga registrada en recepcion
+        if ($request->id_recepcion && Fuga::where('id_recepcion', $request->id_recepcion)->exists()) {
+            return back()->withErrors(['id_recepcion' => 'Este animal ya esta registrada en fuga.']);
+        }
+    
+        // Verificar si el animal ya tiene una fuga registrada en nacimiento
+        if ($request->id_nacimiento && Fuga::where('id_nacimiento', $request->id_nacimiento)->exists()) {
+            return back()->withErrors(['id_nacimiento' => 'Este animal ya esta registrada en fuga.']);
+        }
+    
+        // Crear el nuevo registro de Fuga
+        Fuga::create($validatedData);
+    
         return redirect()->route('fuga.index')->with('success', 'Fuga creada correctamente.');
     }
+    
 
     public function edit(Fuga $fuga)
     {

@@ -49,23 +49,27 @@
                         <!-- Campo con Select2 habilitado para búsqueda -->
                         
                         <div class="form-group">
-                            <label for="id_recepcion">Animal Registrado por Recepción:</label>
-                            <input type="text" name="animal_recepcion" id="animal_recepcion" class="form-control" placeholder="Escribe el nombre del animal">
-                            <input type="hidden" name="id_recepcion" id="id_recepcion">
-                            @error('id_recepcion')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>  
-
-                <!-- Campo de texto con Autocomplete para Nacimiento -->
-                <div class="form-group">
-                            <label for="id_nacimiento">Animal Registrado de Nacimiento:</label>
-                            <input type="text" name="nombre_nacimiento" id="nombre_nacimiento" class="form-control" placeholder="Escribe el nombre del nacimiento">
-                            <input type="hidden" name="id_nacimiento" id="id_nacimiento">
-                            @error('id_nacimiento')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+        <label for="id_recepcion">Animal Registrado por Recepción</label>
+        <select name="id_recepcion" id="id_recepcion" class="form-control">
+            <option value="">Seleccione...</option>
+            @foreach($recepciones as $recepcion)
+                <option value="{{ $recepcion->id_recepcion }}" {{ old('id_recepcion') == $recepcion->id_recepcion ? 'selected' : '' }}>
+                    {{ $recepcion->codigo_animal }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="id_nacimiento">Animal Registrado de Nacimiento</label>
+        <select name="id_nacimiento" id="id_nacimiento" class="form-control">
+            <option value="">Seleccione...</option>
+            @foreach($nacimientos as $nacimiento)
+                <option value="{{ $nacimiento->id_nacimiento }}" {{ old('id_nacimiento') == $nacimiento->id_nacimiento ? 'selected' : '' }}>
+                    {{ $nacimiento->codigo }}
+                </option>
+            @endforeach
+        </select>
+    </div>
 
                         <div class="form-group">
     <label for="fecha">Fecha ficha clinica</label>

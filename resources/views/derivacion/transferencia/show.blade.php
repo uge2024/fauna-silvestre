@@ -5,7 +5,7 @@
 <h3>Detalles de la Transferencia</h3>
 <p>ID: {{ $transferencia->id_transferencia }}</p>
 
-<p>Institución Actual: {{ $transferencia->institucion->nombre }}</p>
+<p>Institución Responsable: {{ $transferencia->institucion->nombre }}</p>
 <p>Recepción: {{ $transferencia->recepcion ? $transferencia->recepcion->nombre : 'N/A' }}</p>
 <p>Nacimiento: {{ $transferencia->nacimiento ? $transferencia->nacimiento->nombre : 'N/A' }}</p>
 <p>Fecha: {{ $transferencia->fecha }}</p>

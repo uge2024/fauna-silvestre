@@ -33,6 +33,13 @@
                     </div>
                 </div>
                 <div class="card-body">
+                @if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error:</strong> {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
                     <form method="GET" action="{{ route('informeclinico.index') }}" class="mb-3">
                         <div class="input-group">
                             <input type="text" name="texto" class="form-control" placeholder="Buscar..." value="{{ request('texto') }}">

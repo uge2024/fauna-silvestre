@@ -75,8 +75,8 @@
                                     <select name="motivo_recepcion" class="form-control" required>
                                         <option value="">Seleccione un motivo</option>
                                         <option value="Rescate" {{ $recepcion->motivo_recepcion == 'Rescate' ? 'selected' : '' }}>Rescate</option>
-                                        <option value="Confiscación" {{ $recepcion->motivo_recepcion == 'Confiscación' ? 'selected' : '' }}>Confiscación</option>
-                                        <option value="Entrega Voluntaria" {{ $recepcion->motivo_recepcion == 'Entrega Voluntaria' ? 'selected' : '' }}>Entrega Voluntaria</option>
+                                        <option value="Confiscación" {{ $recepcion->motivo_recepcion == 'Confiscación' ? 'selected' : '' }}>Decomiso</option>
+                                        
                                         <option value="Traslado" {{ $recepcion->motivo_recepcion == 'Traslado' ? 'selected' : '' }}>Traslado</option>
                                         <option value="Otro" {{ $recepcion->motivo_recepcion == 'Otro' ? 'selected' : '' }}>Otro</option>
                                     </select>

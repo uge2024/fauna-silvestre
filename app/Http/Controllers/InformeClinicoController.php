@@ -14,6 +14,18 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class InformeClinicoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (auth()->user()->hasRole('usuario')) {
+                // Redirigir con un mensaje de error si el usuario es del rol 'usuario'
+                return redirect()->route('informeclinico.index')->with('error', 'No tienes permiso para realizar esta acción.');
+            }
+
+            return $next($request);
+        })->only(['edit', 'destroy']);
+    }
+
     public function index(Request $request)
     {
         $informesClinicos = InformeClinico::with( 'institucion', 'recepcion', 'nacimiento')

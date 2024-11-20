@@ -41,7 +41,7 @@
                                         <option value="">Selecciona una recepción (opcional)</option>
                                         @foreach ($recepciones as $recepcion)
                                             <option value="{{ $recepcion->id_recepcion }}" {{ old('id_recepcion') == $recepcion->id_recepcion ? 'selected' : '' }}>
-                                                {{ $recepcion->nombre }}
+                                                {{ $recepcion->codigo_animal }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -56,7 +56,7 @@
                                         <option value="">Selecciona un nacimiento (opcional)</option>
                                         @foreach ($nacimientos as $nacimiento)
                                             <option value="{{ $nacimiento->id_nacimiento }}" {{ old('id_nacimiento') == $nacimiento->id_nacimiento ? 'selected' : '' }}>
-                                                {{ $nacimiento->nombre }}
+                                                {{ $nacimiento->codigo }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -90,9 +90,12 @@
                                 </div>
 
                                 <div class="form-group">
-        <label for="laboratorio_archivo">Subir  laboratorio  en Archivo PDF</label>
-        <input type="file" class="form-control" id="laboratorio_archivo" name="laboratorio_archivo">
-    </div>
+    <label for="laboratorio_archivo">Subir laboratorio en Archivo PDF</label>
+    <input type="file" class="form-control" id="laboratorio_archivo" name="laboratorio_archivo" accept=".pdf">
+    <small class="form-text text-muted">Tamaño máximo de archivo: 5 MB (aproximadamente 30-50 páginas, dependiendo del contenido).</small>
+</div>
+
+
                             </div>
                         </div>
 

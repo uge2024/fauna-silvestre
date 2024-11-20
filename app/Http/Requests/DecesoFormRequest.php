@@ -32,7 +32,7 @@ class DecesoFormRequest extends FormRequest
                 'causas' => 'required|string|max:50',
                 'diagnostico' => 'required|string|max:50',
               'tratamiento' => 'required|string|max:50',
-              'laboratorio_archivo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'laboratorio_archivo' => 'required|file|mimes:pdf|max:51120', // 5120 KB = 5 MB
               'medico_veterinario' => 'required|string|max:50',
         ];
     }
