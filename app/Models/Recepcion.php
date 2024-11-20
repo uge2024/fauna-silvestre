@@ -50,10 +50,11 @@ class Recepcion extends Model
     {
         return $this->belongsTo(Institucion::class, 'id_institucion');
     }
+    // En el modelo Recepcion
     public function institucionRecibida()
-{
-    return $this->belongsTo(Institucion::class, 'id_institucion_recibida');
-}
-
+    {
+        return $this->belongsTo(Institucion::class, 'id_institucion_recibida', 'id_institucion');
+    }
+    
 
 }

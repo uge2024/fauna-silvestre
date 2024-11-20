@@ -89,7 +89,6 @@ class RecepcionController extends Controller
             return back()->withErrors(['error' => 'Error al crear la recepción: ' . $e->getMessage()]);
         }
     }
-    
 
 private function generateCodigoAnimal($institucion)
 {
@@ -189,10 +188,12 @@ private function generateCodigoAnimal($institucion)
 }
 public function show($id)
 {
-    $recepcion = Recepcion::with( 'institucion')->findOrFail($id);
+    // Cargar la relación 'institucionRecibida' para acceder a la institución responsable del decomiso
+    $recepcion = Recepcion::with('institucionRecibida')->findOrFail($id);
 
     return view('registro.recepcion.show', compact('recepcion'));
 }
+
 public function exportPdf($id)
 {
     $recepcion = Recepcion::findOrFail($id);

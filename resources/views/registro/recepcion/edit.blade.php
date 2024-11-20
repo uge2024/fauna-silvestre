@@ -65,7 +65,7 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-                                <div class="form-group">
+                <div class="form-group">
                                 <label for="fecha">Fecha</label>
                                 <input type="date" name="fecha" id="fecha" class="form-control" 
        value="{{ old('fecha', isset($recepcion->fecha) ? \Carbon\Carbon::parse($recepcion->fecha)->format('Y-m-d') : '') }}" required>
