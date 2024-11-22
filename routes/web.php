@@ -88,4 +88,9 @@ Route::get('/transferencias/reporte/pdf', [TransferenciaController::class, 'desc
 Route::get('/reporte/generar', [ReporteController::class, 'generarReporte'])->name('reporte.generar');
 
 Route::get('/exportar/excel', [ReporteController::class, 'exportarExcelManual'])->name('exportar.excel.manual');
-Route::get('/exportar/excel/manual', [TuControlador::class, 'exportarExcelManual'])->name('exportar.excel.manual');
+Route::get('/exportar/excel/manual', [ReporteController::class, 'exportarExcelManual'])->name('exportar.excel.manual');
+///////////////////////
+// Asegúrate de que tienes una ruta que apunte a tu controlador
+Route::get('/exportar/excel/manual', [ReporteController::class, 'exportarExcelManual']);
+Route::get('exportar-excel/{fechaInicio}/{fechaFin}', [ReporteController::class, 'exportExcel'])->name('export.excel');
+Route::post('/reporte/exportar-excel', [ReporteController::class, 'exportarExcel'])->name('reporte.exportarExcel');

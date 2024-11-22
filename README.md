@@ -7,7 +7,10 @@
 
 3.- php artisan db:seed                           //Este comando también se utiliza para poblar la base de datos, pero sin especificar una clase
 
+4.- php artisan serve
+
 <!-- Credenciales de acceso usuario administrador-->
+
 
 
 
